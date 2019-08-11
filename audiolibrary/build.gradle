@@ -1,17 +1,27 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
     defaultConfig {
-        applicationId "com.rygital.player"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode versions.code
         versionName versions.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
     }
 
     compileOptions {
@@ -28,23 +38,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation project(':audiolibrary')
-
     implementation libraries.kotlin
-
-    implementation libraries.androidxAppCompat
-    implementation libraries.androidxDesign
-    implementation libraries.androidxCardView
-    implementation libraries.androidxRecyclerView
-    implementation libraries.androidxConstraintLayout
-
-    implementation libraries.androidxLifecycleRuntime
-    implementation libraries.androidxLifecycleExtensions
-    annotationProcessor libraries.androidxLifecycleCompiler
-
-    implementation libraries.timber
 
     testImplementation libraries.junit
 }
