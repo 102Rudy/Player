@@ -3,14 +3,14 @@ cmake_minimum_required(VERSION 3.6)
 add_library(
         audio-lib
         SHARED
-        src/main/cpp/audiolib.cpp)
-
-find_library(
-        log-lib
-        log
+        src/main/cpp/audiolib.cpp
+        ${PATH_TO_SUPERPOWERED}/AndroidIO/SuperpoweredAndroidAudioIO.cpp
 )
 
 target_link_libraries(
         audio-lib
-        ${log-lib}
+        log
+        android
+        OpenSLES
+        ${PATH_TO_SUPERPOWERED}/libSuperpoweredAndroid${ANDROID_ABI}.a
 )

@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def superpowered_sdk_path = properties.getProperty('superpowered.dir')
+
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
@@ -11,9 +15,16 @@ android {
         versionName versions.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++14"
+                arguments "-DPATH_TO_SUPERPOWERED:STRING=${superpowered_sdk_path}", "-DANDROID_TOOLCHAIN=clang",
+                        "-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_static"
+                cFlags "-O3", "-fsigned-char"
+                cppFlags "-std=c++14", "-fsigned-char", "-I${superpowered_sdk_path}"
             }
         }
     }
