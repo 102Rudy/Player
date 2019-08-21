@@ -1,7 +1,7 @@
-package com.rygital.player.data
+package com.rygital.player.explorer.data
 
-import com.rygital.player.domain.AudioFile
-import com.rygital.player.domain.ExplorerRepository
+import com.rygital.player.explorer.domain.AudioFile
+import com.rygital.player.explorer.domain.ExplorerRepository
 import javax.inject.Inject
 
 class ExplorerRepositoryImpl @Inject constructor(

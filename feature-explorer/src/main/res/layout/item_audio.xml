@@ -4,7 +4,7 @@
     <data>
         <variable
             name="audioFile"
-            type="com.rygital.player.domain.AudioFile" />
+            type="com.rygital.player.explorer.domain.AudioFile" />
 
     </data>
 

@@ -1,13 +1,12 @@
 package com.rygital.player
 
 import android.app.Application
+import com.rygital.core.di.ApplicationComponentProvider
+import com.rygital.core.di.CoreAndroidApi
 import com.rygital.player.di.ApplicationComponent
 import com.rygital.player.di.DaggerApplicationComponent
 import timber.log.Timber
 
-interface ApplicationComponentProvider {
-    fun getApplicationComponent(): ApplicationComponent
-}
 
 class App : Application(), ApplicationComponentProvider {
 
@@ -25,5 +24,5 @@ class App : Application(), ApplicationComponentProvider {
                 .build()
     }
 
-    override fun getApplicationComponent(): ApplicationComponent = applicationComponent
+    override fun getApplicationComponent(): CoreAndroidApi = applicationComponent
 }

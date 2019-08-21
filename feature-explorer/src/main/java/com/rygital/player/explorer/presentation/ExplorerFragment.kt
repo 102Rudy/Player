@@ -1,4 +1,4 @@
-package com.rygital.player.presentation.explorer
+package com.rygital.player.explorer.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rygital.audioplayer.di.DaggerAudioPlayerComponent
-import com.rygital.player.ApplicationComponentProvider
-import com.rygital.player.R
-import com.rygital.player.databinding.FragmentExplorerBinding
-import com.rygital.player.di.DaggerExplorerComponent
+import com.rygital.core.di.ApplicationComponentProvider
+import com.rygital.player.explorer.R
+import com.rygital.player.explorer.databinding.FragmentExplorerBinding
+import com.rygital.player.explorer.di.DaggerExplorerComponent
 import timber.log.Timber
 import javax.inject.Inject
 

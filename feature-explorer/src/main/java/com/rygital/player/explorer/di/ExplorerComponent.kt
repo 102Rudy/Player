@@ -1,15 +1,14 @@
-package com.rygital.player.di
+package com.rygital.player.explorer.di
 
 import com.rygital.audioplayer.di.AudioPlayerApi
-import com.rygital.audioplayer.di.AudioPlayerComponent
 import com.rygital.core.di.CoreAndroidApi
-import com.rygital.player.data.ExplorerRepositoryImpl
-import com.rygital.player.data.FileManager
-import com.rygital.player.data.FileManagerImpl
-import com.rygital.player.domain.ExplorerInteractor
-import com.rygital.player.domain.ExplorerInteractorImpl
-import com.rygital.player.domain.ExplorerRepository
-import com.rygital.player.presentation.explorer.ExplorerFragment
+import com.rygital.player.explorer.data.ExplorerRepositoryImpl
+import com.rygital.player.explorer.data.FileManager
+import com.rygital.player.explorer.data.FileManagerImpl
+import com.rygital.player.explorer.domain.ExplorerInteractor
+import com.rygital.player.explorer.domain.ExplorerInteractorImpl
+import com.rygital.player.explorer.domain.ExplorerRepository
+import com.rygital.player.explorer.presentation.ExplorerFragment
 import dagger.Binds
 import dagger.Component
 import dagger.Module

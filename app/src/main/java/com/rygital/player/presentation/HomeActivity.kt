@@ -3,7 +3,7 @@ package com.rygital.player.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.rygital.player.R
-import com.rygital.player.presentation.explorer.ExplorerFragment
+import com.rygital.player.explorer.presentation.ExplorerFragment
 
 
 class HomeActivity : AppCompatActivity() {

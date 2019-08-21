@@ -1,12 +1,13 @@
-package com.rygital.player.presentation.explorer
+package com.rygital.player.explorer.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.rygital.player.R
-import com.rygital.player.databinding.ItemAudioBinding
-import com.rygital.player.domain.AudioFile
+import com.rygital.player.explorer.R
+import com.rygital.player.explorer.databinding.ItemAudioBinding
+import com.rygital.player.explorer.domain.AudioFile
+
 
 class ExplorerAdapter : RecyclerView.Adapter<ExplorerAdapter.AudioHolder>() {
 

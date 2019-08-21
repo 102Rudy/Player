@@ -1,1 +1,1 @@
-include ':app', ':audiolibrary', ':audioplayer', ':core'
+include ':app', ':audiolibrary', ':audioplayer', ':core', ':feature-explorer'

@@ -1,4 +1,4 @@
-package com.rygital.player.domain
+package com.rygital.player.explorer.domain
 
 import javax.inject.Inject
 

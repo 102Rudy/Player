@@ -1,14 +1,5 @@
 package com.rygital.player.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.rygital.core.di.ApplicationScope
-import com.rygital.player.di.ExplorerScope
-import dagger.MapKey
-import javax.inject.Inject
-import javax.inject.Provider
-import kotlin.reflect.KClass
-
 //
 //@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
 //@Retention(AnnotationRetention.RUNTIME)

@@ -19,6 +19,7 @@ ext {
             androidxDesign              : '1.0.0',
             androidxConstraint          : '1.1.2',
             androidxLifecycle           : '2.0.0',
+            databindingCompiler         : '3.1.4',
 
             materialDialogs             : '2.8.1',
 
@@ -56,6 +57,8 @@ ext {
             androidxCardView            : "androidx.cardview:cardview:$versions.androidx",
             androidxRecyclerView        : "androidx.recyclerview:recyclerview:$versions.androidx",
             androidxConstraintLayout    : "androidx.constraintlayout:constraintlayout:$versions.androidxConstraint",
+
+            databindingCompiler         : "com.android.databinding:compiler:$versions.databindingCompiler",
 
             androidxLifecycleRuntime    : "androidx.lifecycle:lifecycle-runtime:$versions.androidxLifecycle",
             androidxLifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$versions.androidxLifecycle",

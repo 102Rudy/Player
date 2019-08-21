@@ -37,17 +37,19 @@ dependencies {
 
     implementation project(':core')
     implementation project(':audioplayer')
+    implementation project(':feature-explorer')
 
     implementation libraries.androidxAppCompat
     implementation libraries.androidxDesign
     implementation libraries.androidxCardView
     implementation libraries.androidxRecyclerView
     implementation libraries.androidxConstraintLayout
-    kapt 'com.android.databinding:compiler:3.1.4'
+
+    kapt libraries.databindingCompiler
 
     implementation libraries.androidxLifecycleRuntime
     implementation libraries.androidxLifecycleExtensions
-    annotationProcessor libraries.androidxLifecycleCompiler
+    kapt libraries.androidxLifecycleCompiler
 
     kapt libraries.daggerCompiler
 
