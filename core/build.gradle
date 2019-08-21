@@ -1,0 +1,14 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api libraries.kotlin
+
+    api libraries.dagger
+    kapt libraries.daggerCompiler
+
+    api libraries.timber
+
+    testImplementation libraries.junit
+}

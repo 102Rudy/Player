@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -14,6 +15,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    dataBinding.enabled = true
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -21,8 +24,10 @@ android {
 
     buildTypes {
         release {
+            shrinkResources true
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            proguardFiles fileTree('../proguard').asList().toArray()
         }
     }
 }
@@ -30,21 +35,21 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':audiolibrary')
-
-    implementation libraries.kotlin
+    implementation project(':core')
+    implementation project(':audioplayer')
 
     implementation libraries.androidxAppCompat
     implementation libraries.androidxDesign
     implementation libraries.androidxCardView
     implementation libraries.androidxRecyclerView
     implementation libraries.androidxConstraintLayout
+    kapt 'com.android.databinding:compiler:3.1.4'
 
     implementation libraries.androidxLifecycleRuntime
     implementation libraries.androidxLifecycleExtensions
     annotationProcessor libraries.androidxLifecycleCompiler
 
-    implementation libraries.timber
+    kapt libraries.daggerCompiler
 
     testImplementation libraries.junit
 }
