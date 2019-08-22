@@ -51,7 +51,7 @@ class ExplorerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val explorerAdapter = ExplorerAdapter()
+        val explorerAdapter = ExplorerAdapter { audioFile -> viewModel?.playAudioFile(audioFile) }
         viewModel?.getAudioFiles()?.let {
             explorerAdapter.setItems(it)
         }

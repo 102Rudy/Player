@@ -10,7 +10,7 @@ ext {
 
             kotlin                      : '1.3.41',
 
-            androidPlugin               : '3.4.2',
+            androidPlugin               : '3.5.0',
             dexcountPlugin              : '0.8.6',
             googleServicesPlugin        : '4.2.0',
             crashlyticsPlugin           : '1.29.0',

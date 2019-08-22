@@ -1,4 +1,4 @@
-package com.rygital.player.explorer.domain
+package com.rygital.core.model
 
 data class AudioFile(
         val pathToFile: String,

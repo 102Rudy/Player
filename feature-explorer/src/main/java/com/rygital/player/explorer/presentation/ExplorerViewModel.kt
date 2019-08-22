@@ -3,7 +3,7 @@ package com.rygital.player.explorer.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rygital.audioplayer.domain.AudioInteractor
-import com.rygital.player.explorer.domain.AudioFile
+import com.rygital.core.model.AudioFile
 import com.rygital.player.explorer.domain.ExplorerInteractor
 import timber.log.Timber
 import javax.inject.Inject
@@ -34,4 +34,7 @@ class ExplorerViewModel(
 
     fun getAudioFiles(): List<AudioFile> = explorerInteractor.getSongs()
 
+    fun playAudioFile(audioFile: AudioFile) {
+        audioInteractor.play(audioFile)
+    }
 }

@@ -2,6 +2,9 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include "AudioPlayer.h"
+
+static AudioPlayer *audioPlayer = nullptr;
 
 extern "C" {
 
@@ -16,14 +19,28 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void __unused *reserved) {
     return JNI_VERSION_1_6;
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_rygital_audiolibrary_AudioLibWrapper_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */
-) {
 
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_initialize(
+        JNIEnv __unused *env,
+        jobject __unused obj,
+        jint sampleRate,
+        jint bufferSize
+) {
+    audioPlayer = new AudioPlayer((unsigned int) sampleRate, (unsigned int) bufferSize);
+}
+
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_playAudioFile(
+        JNIEnv *env,
+        jobject __unused obj,
+        jstring pathToFile,
+        jint fileOffset,
+        jint fileLength
+) {
+    const char *path = env->GetStringUTFChars(pathToFile, nullptr);
+    audioPlayer->playAudioFile(path, fileOffset, fileLength);
+    env->ReleaseStringUTFChars(pathToFile, path);
 }
 
 }

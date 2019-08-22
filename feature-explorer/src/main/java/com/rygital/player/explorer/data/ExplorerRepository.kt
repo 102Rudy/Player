@@ -1,6 +1,6 @@
 package com.rygital.player.explorer.data
 
-import com.rygital.player.explorer.domain.AudioFile
+import com.rygital.core.model.AudioFile
 import com.rygital.player.explorer.domain.ExplorerRepository
 import javax.inject.Inject
 

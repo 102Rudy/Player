@@ -3,7 +3,7 @@ package com.rygital.player.explorer.data
 import android.content.Context
 import android.provider.MediaStore
 import com.rygital.core.di.ApplicationContext
-import com.rygital.player.explorer.domain.AudioFile
+import com.rygital.core.model.AudioFile
 import javax.inject.Inject
 
 interface FileManager {

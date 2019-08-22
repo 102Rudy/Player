@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget" />
+
+    <style name="Widget.Text">
+        <item name="android:color">@color/color_statelist_text</item>
+    </style>
+
+    <style name="Widget.Text.Regular">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Widget.Text.Medium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+</resources>

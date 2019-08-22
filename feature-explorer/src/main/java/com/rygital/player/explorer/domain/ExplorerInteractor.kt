@@ -1,5 +1,6 @@
 package com.rygital.player.explorer.domain
 
+import com.rygital.core.model.AudioFile
 import javax.inject.Inject
 
 interface ExplorerRepository {

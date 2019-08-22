@@ -10,9 +10,6 @@ class AudioLibWrapper {
         System.loadLibrary(LIBRARY_NAME)
     }
 
-//    external fun initialize(sampleRate: Int, bufferSize: Int)
-//    external fun initialize(sampleRate: Int, bufferSize: Int, path: String, fileOffset: Int, fileLength: Int)
-
-    external fun stringFromJNI(): String
-
+    external fun initialize(sampleRate: Int, bufferSize: Int)
+    external fun playAudioFile(pathToFile: String, fileOffset: Int, fileLength: Int)
 }

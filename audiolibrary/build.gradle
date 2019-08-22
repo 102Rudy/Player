@@ -21,9 +21,9 @@ android {
 
         externalNativeBuild {
             cmake {
-                arguments "-DPATH_TO_SUPERPOWERED:STRING=${superpowered_sdk_path}", "-DANDROID_TOOLCHAIN=clang",
-                        "-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_static"
-                cFlags "-O3", "-fsigned-char"
+                arguments "-DANDROID_PLATFORM=android-21", "-DPATH_TO_SUPERPOWERED:STRING=${superpowered_sdk_path}",
+                        "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_static"
+                cFlags "-O3", "-fsigned-char"  // full optimization, char data type is signed
                 cppFlags "-std=c++14", "-fsigned-char", "-I${superpowered_sdk_path}"
             }
         }
