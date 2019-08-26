@@ -59,7 +59,8 @@ AudioPlayer::~AudioPlayer() {
 }
 
 void AudioPlayer::playAudioFile(const char *path, int fileOffset, int fileLength) {
-    log_print(ANDROID_LOG_VERBOSE, "AudioPlayer::playAudioFile", "path to file: %s", path);
+    Logger::instance()->v("AudioPlayer::playAudioFile", "path to file: %s", path);
+
     player->open(path, fileOffset, fileLength);
     player->play(false);
 

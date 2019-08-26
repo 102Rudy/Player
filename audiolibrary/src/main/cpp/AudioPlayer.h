@@ -5,8 +5,6 @@
 #include <SuperpoweredAdvancedAudioPlayer.h>
 #include <AndroidIO/SuperpoweredAndroidAudioIO.h>
 
-#define log_print __android_log_print
-
 #define SUPERPOWERED_TEMPORARY_LICENSE_KEY "ExampleLicenseKey-WillExpire-OnNextUpdate"
 
 class AudioPlayer {

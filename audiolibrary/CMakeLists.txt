@@ -5,6 +5,7 @@ add_library(
         SHARED
         src/main/cpp/audiolib.cpp
         src/main/cpp/AudioPlayer.cpp
+        src/main/cpp/Logger.cpp
         ${PATH_TO_SUPERPOWERED}/AndroidIO/SuperpoweredAndroidAudioIO.cpp
 )
 
