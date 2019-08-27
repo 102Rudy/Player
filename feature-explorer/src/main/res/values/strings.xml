@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Explorer</string>
+    <string name="permission_read_explanation_title">Permission required</string>
+    <string name="permission_read_explanation_title_after_denied">Permission denied</string>
+    <string name="permission_read_explanation">Permission to read files is required for load audio files from the smartphone memory</string>
+    <string name="permission_read_explanation_retry">Allow</string>
+    <string name="permission_read_explanation_close">Deny</string>
 </resources>

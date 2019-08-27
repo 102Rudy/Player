@@ -13,5 +13,7 @@ dependencies {
     implementation libraries.androidxLifecycleExtensions
     kapt libraries.androidxLifecycleCompiler
 
+    implementation libraries.materialDialogs
+
     kapt libraries.daggerCompiler
 }
