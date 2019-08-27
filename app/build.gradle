@@ -53,5 +53,7 @@ dependencies {
 
     kapt libraries.daggerCompiler
 
+    debugImplementation libraries.leakCanary
+
     testImplementation libraries.junit
 }

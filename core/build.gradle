@@ -5,6 +5,9 @@ dependencies {
 
     api libraries.kotlin
 
+    api libraries.androidxLifecycleRuntime
+    api libraries.androidxLifecycleExtensions
+
     api libraries.dagger
     kapt libraries.daggerCompiler
 

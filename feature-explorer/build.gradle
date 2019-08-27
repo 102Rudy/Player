@@ -8,9 +8,6 @@ dependencies {
     implementation libraries.androidxRecyclerView
 
     kapt libraries.databindingCompiler
-
-    implementation libraries.androidxLifecycleRuntime
-    implementation libraries.androidxLifecycleExtensions
     kapt libraries.androidxLifecycleCompiler
 
     implementation libraries.materialDialogs

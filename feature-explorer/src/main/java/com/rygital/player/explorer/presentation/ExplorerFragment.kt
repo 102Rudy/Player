@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.rygital.audioplayer.di.DaggerAudioPlayerComponent
 import com.rygital.core.di.ApplicationComponentProvider
+import com.rygital.core.presentation.PermissionDialogExplanationViewData
 import com.rygital.player.explorer.R
 import com.rygital.player.explorer.databinding.FragmentExplorerBinding
 import com.rygital.player.explorer.di.DaggerExplorerComponent
@@ -23,7 +24,6 @@ import javax.inject.Inject
 
 
 class ExplorerFragment : Fragment() {
-
 
     @Inject
     lateinit var viewModelFactory: ExplorerViewModelFactory

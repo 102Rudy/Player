@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">core</string>
+    <string name="permission_explanation_title">Permission required</string>
+    <string name="permission_explanation_title_after_denied">Permission denied</string>
+
+    <string name="permission_explanation_retry">Allow</string>
+    <string name="permission_explanation_close">Deny</string>
 </resources>
