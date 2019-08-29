@@ -9,7 +9,7 @@ import com.rygital.player.explorer.R
 import com.rygital.player.explorer.databinding.ItemAudioBinding
 
 
-class ExplorerAdapter(
+internal class ExplorerAdapter(
         private val itemClickListener: (AudioFile) -> Unit
 ) : RecyclerView.Adapter<ExplorerAdapter.AudioHolder>() {
 

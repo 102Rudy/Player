@@ -75,3 +75,13 @@ bool AudioPlayer::processAudio(short int *output, unsigned int numberOfSamples) 
         return false;
     }
 }
+
+void AudioPlayer::onBackground() {
+    Logger::instance()->v("AudioPlayer::onBackground", "on background");
+    audioIO->onBackground();
+}
+
+void AudioPlayer::onForeground() {
+    Logger::instance()->v("AudioPlayer::onForeground", "on foreground");
+    audioIO->onForeground();
+}

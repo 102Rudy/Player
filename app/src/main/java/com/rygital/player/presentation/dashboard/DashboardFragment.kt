@@ -8,8 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import com.rygital.audioplayer.domain.AudioInteractor
-import com.rygital.audioplayer.domain.AudioInteractorImpl
 import com.rygital.player.R
 import com.rygital.player.databinding.FragmentDashboardBinding
 

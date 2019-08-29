@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.rygital.audioplayer.domain.AudioInteractor
+import com.rygital.core.domain.AudioInteractor
 import com.rygital.core.model.AudioFile
 import com.rygital.core.presentation.PermissionData
 import com.rygital.core.presentation.PermissionDelegate
@@ -33,7 +33,7 @@ class ExplorerViewModelFactory @Inject constructor(
     }
 }
 
-class ExplorerViewModel(
+internal class ExplorerViewModel(
         private val explorerInteractor: ExplorerInteractor,
         private val audioInteractor: AudioInteractor,
         private val permissionDelegate: PermissionDelegateImpl
@@ -79,11 +79,13 @@ class ExplorerViewModel(
         permissionDelegate.showRequestPermissionDialog(PERMISSIONS_REQUEST_READ_STORAGE)
     }
 
-    fun playAudioFile(audioFile: AudioFile) {
-        audioInteractor.play(audioFile)
+    private fun loadAudioFilesFromStorage() {
+        // background
+        _audioFiles.value = explorerInteractor.getSongs()
     }
 
-    private fun loadAudioFilesFromStorage() {
-        _audioFiles.postValue(explorerInteractor.getSongs())
+    fun playAudioFile(audioFile: AudioFile) {
+        // background
+        audioInteractor.play(audioFile)
     }
 }

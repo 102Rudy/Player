@@ -1,9 +1,10 @@
 package com.rygital.audioplayer.di
 
 import com.rygital.audiolibrary.AudioLibWrapper
-import com.rygital.audioplayer.domain.AudioInteractor
 import com.rygital.audioplayer.domain.AudioInteractorImpl
+import com.rygital.core.di.AudioPlayerApi
 import com.rygital.core.di.CoreAndroidApi
+import com.rygital.core.domain.AudioInteractor
 import dagger.Binds
 import dagger.Component
 import dagger.Module
@@ -12,11 +13,7 @@ import javax.inject.Scope
 
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AudioPlayerScope
-
-interface AudioPlayerApi {
-    fun audioInteractor(): AudioInteractor
-}
+internal annotation class AudioPlayerScope
 
 @AudioPlayerScope
 @Component(
@@ -31,14 +28,14 @@ interface AudioPlayerApi {
 interface AudioPlayerComponent : AudioPlayerApi
 
 @Module
-abstract class AudioPlayerBindsModule {
+internal abstract class AudioPlayerBindsModule {
 
     @Binds
     abstract fun provideAudioInteractor(impl: AudioInteractorImpl): AudioInteractor
 }
 
 @Module
-class AudioPlayerModule {
+internal class AudioPlayerModule {
     @Provides
     @AudioPlayerScope
     fun provideAudioLibWrapper() = AudioLibWrapper()

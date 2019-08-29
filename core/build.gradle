@@ -4,6 +4,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api libraries.kotlin
+    api libraries.kotlinCoroutinesCore
+    api libraries.kotlinCoroutinesAndroid
 
     api libraries.androidxLifecycleRuntime
     api libraries.androidxLifecycleExtensions

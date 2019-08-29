@@ -43,4 +43,20 @@ Java_com_rygital_audiolibrary_AudioLibWrapper_playAudioFile(
     env->ReleaseStringUTFChars(pathToFile, path);
 }
 
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_onBackground(
+        JNIEnv __unused *env,
+        jobject __unused obj
+) {
+    audioPlayer->onBackground();
+}
+
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_onForeground(
+        JNIEnv __unused *env,
+        jobject __unused obj
+) {
+    audioPlayer->onForeground();
+}
+
 }

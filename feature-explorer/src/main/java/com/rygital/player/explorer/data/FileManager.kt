@@ -6,11 +6,11 @@ import com.rygital.core.di.ApplicationContext
 import com.rygital.core.model.AudioFile
 import javax.inject.Inject
 
-interface FileManager {
+internal interface FileManager {
     fun getAllAudioFilesFromStorage(): List<AudioFile>
 }
 
-class FileManagerImpl @Inject constructor(
+internal class FileManagerImpl @Inject constructor(
         @ApplicationContext private val context: Context
 ) : FileManager {
 

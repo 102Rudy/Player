@@ -2,7 +2,6 @@ apply from: "${rootProject.projectDir}/common.gradle"
 
 dependencies {
     implementation project(':core')
-    implementation project(':audioplayer')
 
     implementation libraries.androidxAppCompat
     implementation libraries.androidxRecyclerView

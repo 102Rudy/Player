@@ -1,6 +1,6 @@
 package com.rygital.player.explorer.di
 
-import com.rygital.audioplayer.di.AudioPlayerApi
+import com.rygital.core.di.AudioPlayerApi
 import com.rygital.core.di.CoreAndroidApi
 import com.rygital.player.explorer.data.ExplorerRepositoryImpl
 import com.rygital.player.explorer.data.FileManager
@@ -16,7 +16,7 @@ import javax.inject.Scope
 
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ExplorerScope
+internal annotation class ExplorerScope
 
 @ExplorerScope
 @Component(

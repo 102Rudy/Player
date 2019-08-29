@@ -18,6 +18,10 @@ public:
 
     bool processAudio(short int *output, unsigned int numberOfSamples);
 
+    void onBackground();
+
+    void onForeground();
+
 private:
     SuperpoweredAdvancedAudioPlayer *player;
     SuperpoweredAndroidAudioIO *audioIO;

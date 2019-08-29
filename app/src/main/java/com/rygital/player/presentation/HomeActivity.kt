@@ -3,6 +3,7 @@ package com.rygital.player.presentation
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
+import com.rygital.core.utils.componentProvider
 import com.rygital.player.BuildConfig
 import com.rygital.player.R
 import com.rygital.player.explorer.presentation.ExplorerFragment
@@ -40,5 +41,15 @@ class HomeActivity : AppCompatActivity() {
 
         StrictMode.setThreadPolicy(threadPolicy)
         StrictMode.setVmPolicy(vmPolicy)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        componentProvider.getAudioPlayerComponent().audioInteractor().onForeground()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        componentProvider.getAudioPlayerComponent().audioInteractor().onBackground()
     }
 }

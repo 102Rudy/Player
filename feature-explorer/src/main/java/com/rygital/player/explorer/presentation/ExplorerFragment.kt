@@ -13,9 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
-import com.rygital.audioplayer.di.DaggerAudioPlayerComponent
-import com.rygital.core.di.ApplicationComponentProvider
 import com.rygital.core.presentation.PermissionDialogExplanationViewData
+import com.rygital.core.utils.componentProvider
 import com.rygital.player.explorer.R
 import com.rygital.player.explorer.databinding.FragmentExplorerBinding
 import com.rygital.player.explorer.di.DaggerExplorerComponent
@@ -40,18 +39,8 @@ class ExplorerFragment : Fragment() {
 
         Timber.i("ExplorerFragment onCreateView $this")
         DaggerExplorerComponent.builder()
-                .coreAndroidApi(
-                        (requireActivity().applicationContext as ApplicationComponentProvider)
-                                .getApplicationComponent()
-                )
-                .audioPlayerApi(
-                        DaggerAudioPlayerComponent.builder()
-                                .coreAndroidApi(
-                                        (requireActivity().applicationContext as ApplicationComponentProvider)
-                                                .getApplicationComponent()
-                                )
-                                .build()
-                )
+                .coreAndroidApi(componentProvider.getApplicationComponent())
+                .audioPlayerApi(componentProvider.getAudioPlayerComponent())
                 .build()
                 .inject(this)
 

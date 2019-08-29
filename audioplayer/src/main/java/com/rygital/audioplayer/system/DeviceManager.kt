@@ -6,13 +6,13 @@ import com.rygital.audioplayer.di.AudioPlayerScope
 import com.rygital.core.di.ApplicationContext
 import javax.inject.Inject
 
-data class DeviceAudioInfo(
+internal data class DeviceAudioInfo(
         val sampleRate: Int,
         val bufferSize: Int
 )
 
 @AudioPlayerScope
-class DeviceManager @Inject constructor(
+internal class DeviceManager @Inject constructor(
         @ApplicationContext private val context: Context
 ) {
 

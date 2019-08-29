@@ -1,6 +1,6 @@
 package com.rygital.audioplayer.domain
 
-data class Song(
+internal data class Song(
     val id: Long,
     val url: String
 )
