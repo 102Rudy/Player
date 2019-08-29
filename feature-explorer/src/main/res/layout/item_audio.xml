@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_music_note_black_24dp"
+            android:src="@drawable/ic_music_note"
             android:scaleType="centerCrop"
             android:layout_gravity="center_vertical"
             tools:ignore="ContentDescription" />

@@ -14,13 +14,17 @@ public:
 
     ~AudioPlayer();
 
-    void playAudioFile(const char *path, int fileOffset, int fileLength);
-
-    bool processAudio(short int *output, unsigned int numberOfSamples);
-
     void onBackground();
 
     void onForeground();
+
+    bool processAudio(short int *output, unsigned int numberOfSamples);
+
+    void openAudioFile(const char *path, int fileOffset, int fileLength);
+
+    void play();
+
+    void pause();
 
 private:
     SuperpoweredAdvancedAudioPlayer *player;

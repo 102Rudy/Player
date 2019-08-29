@@ -31,19 +31,6 @@ Java_com_rygital_audiolibrary_AudioLibWrapper_initialize(
 }
 
 JNIEXPORT void
-Java_com_rygital_audiolibrary_AudioLibWrapper_playAudioFile(
-        JNIEnv *env,
-        jobject __unused obj,
-        jstring pathToFile,
-        jint fileOffset,
-        jint fileLength
-) {
-    const char *path = env->GetStringUTFChars(pathToFile, nullptr);
-    audioPlayer->playAudioFile(path, fileOffset, fileLength);
-    env->ReleaseStringUTFChars(pathToFile, path);
-}
-
-JNIEXPORT void
 Java_com_rygital_audiolibrary_AudioLibWrapper_onBackground(
         JNIEnv __unused *env,
         jobject __unused obj
@@ -58,5 +45,35 @@ Java_com_rygital_audiolibrary_AudioLibWrapper_onForeground(
 ) {
     audioPlayer->onForeground();
 }
+
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_openAudioFile(
+        JNIEnv *env,
+        jobject __unused obj,
+        jstring pathToFile,
+        jint fileOffset,
+        jint fileLength
+) {
+    const char *path = env->GetStringUTFChars(pathToFile, nullptr);
+    audioPlayer->openAudioFile(path, fileOffset, fileLength);
+    env->ReleaseStringUTFChars(pathToFile, path);
+}
+
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_play(
+        JNIEnv __unused *env,
+        jobject __unused obj
+) {
+    audioPlayer->play();
+}
+
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_pause(
+        JNIEnv __unused *env,
+        jobject __unused obj
+) {
+    audioPlayer->pause();
+}
+
 
 }

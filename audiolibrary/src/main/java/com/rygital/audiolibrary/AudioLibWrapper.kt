@@ -11,8 +11,10 @@ class AudioLibWrapper {
     }
 
     external fun initialize(sampleRate: Int, bufferSize: Int)
-    external fun playAudioFile(pathToFile: String, fileOffset: Int, fileLength: Int)
-
     external fun onBackground()
     external fun onForeground()
+
+    external fun openAudioFile(pathToFile: String, fileOffset: Int, fileLength: Int)
+    external fun play()
+    external fun pause()
 }

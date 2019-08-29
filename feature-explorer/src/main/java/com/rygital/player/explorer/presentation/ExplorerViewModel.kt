@@ -86,6 +86,7 @@ internal class ExplorerViewModel(
 
     fun playAudioFile(audioFile: AudioFile) {
         // background
-        audioInteractor.play(audioFile)
+        audioInteractor.open(audioFile)
+        audioInteractor.play()
     }
 }

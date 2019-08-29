@@ -26,16 +26,28 @@ internal class AudioInteractorImpl @Inject constructor(
         audioLibWrapper.initialize(sampleRate, bufferSize)
     }
 
-    override fun play(audioFile: AudioFile) {
-        Timber.i("play $audioFile")
-        audioLibWrapper.playAudioFile(audioFile.pathToFile, 0, File(audioFile.pathToFile).length().toInt())
-    }
-
     override fun onBackground() {
         audioLibWrapper.onBackground()
     }
 
     override fun onForeground() {
         audioLibWrapper.onForeground()
+    }
+
+    override fun open(audioFile: AudioFile) {
+        Timber.i("open audio file: $audioFile")
+        audioLibWrapper.openAudioFile(audioFile.pathToFile, 0, File(audioFile.pathToFile).length().toInt())
+    }
+
+    override fun play() {
+        audioLibWrapper.play()
+    }
+
+    override fun pause() {
+        audioLibWrapper.pause()
+    }
+
+    override fun stop() {
+
     }
 }

@@ -58,13 +58,12 @@ AudioPlayer::~AudioPlayer() {
     free(stereoBuffer);
 }
 
-void AudioPlayer::playAudioFile(const char *path, int fileOffset, int fileLength) {
-    Logger::instance()->v("AudioPlayer::playAudioFile", "path to file: %s", path);
+void AudioPlayer::onBackground() {
+    audioIO->onBackground();
+}
 
-    player->open(path, fileOffset, fileLength);
-    player->play(false);
-
-    SuperpoweredCPU::setSustainedPerformanceMode(player->playing);  // prevent dropouts
+void AudioPlayer::onForeground() {
+    audioIO->onForeground();
 }
 
 bool AudioPlayer::processAudio(short int *output, unsigned int numberOfSamples) {
@@ -76,12 +75,16 @@ bool AudioPlayer::processAudio(short int *output, unsigned int numberOfSamples) 
     }
 }
 
-void AudioPlayer::onBackground() {
-    Logger::instance()->v("AudioPlayer::onBackground", "on background");
-    audioIO->onBackground();
+void AudioPlayer::openAudioFile(const char *path, int fileOffset, int fileLength) {
+    Logger::instance()->v("AudioPlayer::openAudioFile", "path to file: %s", path);
+    player->open(path, fileOffset, fileLength);
 }
 
-void AudioPlayer::onForeground() {
-    Logger::instance()->v("AudioPlayer::onForeground", "on foreground");
-    audioIO->onForeground();
+void AudioPlayer::play() {
+    player->play(false);
+    SuperpoweredCPU::setSustainedPerformanceMode(player->playing);  // prevent dropouts
+}
+
+void AudioPlayer::pause() {
+    player->pause();
 }

@@ -1,0 +1,12 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+
+dependencies {
+    implementation project(':core')
+
+    implementation libraries.androidxAppCompat
+
+    kapt libraries.databindingCompiler
+    kapt libraries.androidxLifecycleCompiler
+
+    kapt libraries.daggerCompiler
+}
