@@ -1,10 +1,13 @@
 package com.rygital.core.domain
 
 import com.rygital.core.model.AudioFile
+import com.rygital.core.model.PlayerState
 import kotlinx.coroutines.channels.ReceiveChannel
 
 interface AudioInteractor {
-    val currentAudioFileChannel: ReceiveChannel<AudioFile>
+
+    val audioFileChannel: ReceiveChannel<AudioFile>
+    val playerStateChannel: ReceiveChannel<PlayerState>
 
     fun initialize()
     fun onBackground()
@@ -12,7 +15,7 @@ interface AudioInteractor {
 
     suspend fun open(audioFile: AudioFile)
 
-    fun play()
-    fun pause()
+    suspend fun play()
+    suspend fun pause()
     fun stop()
 }

@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rygital.core.domain.AudioInteractor
+import com.rygital.core.model.AudioFile
+import com.rygital.core.model.PlayerState
 import com.rygital.core.presentation.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class WidgetViewModelFactory @Inject constructor(
@@ -28,25 +31,39 @@ class WidgetViewModel(
         private val audioInteractor: AudioInteractor
 ) : BaseViewModel() {
 
-    private val _playerState = MutableLiveData<WidgetViewData>()
-    val playerState: LiveData<WidgetViewData>
+    private val _audioFile = MutableLiveData<AudioFile>()
+    val audioFile: LiveData<AudioFile>
+        get() = _audioFile
+
+    private val _playerState = MutableLiveData<PlayerState>()
+    val playerState: LiveData<PlayerState>
         get() = _playerState
 
     init {
         launch(Dispatchers.IO) {
             @Suppress("EXPERIMENTAL_API_USAGE")
-            audioInteractor.currentAudioFileChannel.consumeEach {
-                _playerState.postValue(WidgetViewData(it.title, true))
+            audioInteractor.audioFileChannel.consumeEach {
+                Timber.i("audioFileChannel, $it")
+                _audioFile.postValue(it)
+            }
+        }
+
+        launch(Dispatchers.IO) {
+            @Suppress("EXPERIMENTAL_API_USAGE")
+            audioInteractor.playerStateChannel.consumeEach {
+                Timber.i("playerStateChannel, $it")
+                _playerState.postValue(it)
             }
         }
     }
 
     fun togglePlayPause() {
-        audioInteractor.pause()
-//        if (playerState.value?.isPlaying == true) {
-//            audioInteractor.play()
-//        } else {
-//            audioInteractor.stop()
-//        }
+        launch {
+            if (playerState.value == PlayerState.PAUSED) {
+                audioInteractor.play()
+            } else {
+                audioInteractor.pause()
+            }
+        }
     }
 }

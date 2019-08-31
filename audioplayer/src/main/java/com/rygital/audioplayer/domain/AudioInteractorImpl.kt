@@ -5,6 +5,7 @@ import com.rygital.audioplayer.di.AudioPlayerScope
 import com.rygital.audioplayer.system.DeviceManager
 import com.rygital.core.domain.AudioInteractor
 import com.rygital.core.model.AudioFile
+import com.rygital.core.model.PlayerState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import timber.log.Timber
@@ -21,9 +22,14 @@ internal class AudioInteractorImpl @Inject constructor(
         private val deviceManager: DeviceManager
 ) : AudioInteractor {
 
-    private val _currentAudioFileChannel: Channel<AudioFile> = Channel()
-    override val currentAudioFileChannel: ReceiveChannel<AudioFile>
-        get() = _currentAudioFileChannel
+
+    private val _audioFileChannel: Channel<AudioFile> = Channel()
+    override val audioFileChannel: ReceiveChannel<AudioFile>
+        get() = _audioFileChannel
+
+    private val _playerStateChannel: Channel<PlayerState> = Channel()
+    override val playerStateChannel: ReceiveChannel<PlayerState>
+        get() = _playerStateChannel
 
     override fun initialize() {
         audioLibWrapper.loadLibrary()
@@ -44,15 +50,17 @@ internal class AudioInteractorImpl @Inject constructor(
         Timber.i("open audio file: $audioFile")
         audioLibWrapper.openAudioFile(audioFile.pathToFile, 0, File(audioFile.pathToFile).length().toInt())
 
-        _currentAudioFileChannel.send(audioFile)
+        _audioFileChannel.send(audioFile)
     }
 
-    override fun play() {
+    override suspend fun play() {
         audioLibWrapper.play()
+        _playerStateChannel.send(PlayerState.PLAYING)
     }
 
-    override fun pause() {
+    override suspend fun pause() {
         audioLibWrapper.pause()
+        _playerStateChannel.send(PlayerState.PAUSED)
     }
 
     override fun stop() {

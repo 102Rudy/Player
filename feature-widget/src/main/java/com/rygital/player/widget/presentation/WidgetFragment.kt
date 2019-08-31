@@ -40,12 +40,15 @@ class WidgetFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerDataListeners()
-
     }
 
     private fun registerDataListeners() {
+        viewModel?.audioFile?.observe(this, Observer {
+            binding?.audioFile = it
+        })
+
         viewModel?.playerState?.observe(this, Observer {
-            binding?.widgetData = it
+            binding?.playerState = it
         })
 
         binding?.run {
