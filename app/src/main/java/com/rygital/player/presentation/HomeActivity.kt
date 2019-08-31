@@ -7,6 +7,7 @@ import com.rygital.core.utils.componentProvider
 import com.rygital.player.BuildConfig
 import com.rygital.player.R
 import com.rygital.player.explorer.presentation.ExplorerFragment
+import com.rygital.player.widget.presentation.WidgetFragment
 
 
 class HomeActivity : AppCompatActivity() {
@@ -23,6 +24,12 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.homeContainer, ExplorerFragment())
+                    .disallowAddToBackStack()
+                    .commit()
+
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.bottomSheet, WidgetFragment())
                     .disallowAddToBackStack()
                     .commit()
         }

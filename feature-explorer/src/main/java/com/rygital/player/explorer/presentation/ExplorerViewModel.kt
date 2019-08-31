@@ -8,12 +8,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rygital.core.domain.AudioInteractor
 import com.rygital.core.model.AudioFile
+import com.rygital.core.presentation.BaseViewModel
 import com.rygital.core.presentation.PermissionData
 import com.rygital.core.presentation.PermissionDelegate
 import com.rygital.core.presentation.PermissionDelegateImpl
 import com.rygital.core.system.ResourceManager
 import com.rygital.player.explorer.R
 import com.rygital.player.explorer.domain.ExplorerInteractor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -37,7 +41,7 @@ internal class ExplorerViewModel(
         private val explorerInteractor: ExplorerInteractor,
         private val audioInteractor: AudioInteractor,
         private val permissionDelegate: PermissionDelegateImpl
-) : ViewModel(), PermissionDelegate by permissionDelegate {
+) : BaseViewModel(), PermissionDelegate by permissionDelegate {
 
     companion object {
         private const val PERMISSION_READ_EXTERNAL_STORAGE: String = Manifest.permission.READ_EXTERNAL_STORAGE
@@ -81,12 +85,15 @@ internal class ExplorerViewModel(
 
     private fun loadAudioFilesFromStorage() {
         // background
-        _audioFiles.value = explorerInteractor.getSongs()
+        launch {
+            _audioFiles.value = withContext(Dispatchers.IO) { explorerInteractor.getSongs() }
+        }
     }
 
     fun playAudioFile(audioFile: AudioFile) {
-        // background
-        audioInteractor.open(audioFile)
-        audioInteractor.play()
+        launch(Dispatchers.IO) {
+            audioInteractor.open(audioFile)
+            audioInteractor.play()
+        }
     }
 }
