@@ -32,7 +32,7 @@ public:
     void e(const char *tag, const char *fmt, ...) FORMAT(3, 4);
 
 private:
-    Logger() {}
+    Logger() = default;
 };
 
 #endif //PLAYER_LOGGER_H

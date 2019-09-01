@@ -18,4 +18,6 @@ class AudioLibWrapper {
     external fun openAudioFile(pathToFile: String, fileOffset: Int, fileLength: Int)
     external fun play()
     external fun pause()
+
+    external fun seekTo(positionPercent: Double)
 }

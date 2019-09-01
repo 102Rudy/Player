@@ -131,5 +131,14 @@ Java_com_rygital_audiolibrary_AudioLibWrapper_pause(
     audioPlayer->pause();
 }
 
+JNIEXPORT void
+Java_com_rygital_audiolibrary_AudioLibWrapper_seekTo(
+        JNIEnv __unused *env,
+        jobject __unused pThis,
+        jdouble positionPercent
+) {
+    audioPlayer->seekTo(positionPercent);
+}
+
 
 }

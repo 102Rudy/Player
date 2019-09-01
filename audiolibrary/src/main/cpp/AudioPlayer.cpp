@@ -85,10 +85,12 @@ void AudioPlayer::playerEventCallback(SuperpoweredAdvancedAudioPlayerEvent event
         case SuperpoweredAdvancedAudioPlayerEvent_LoadSuccess:
             break;
         case SuperpoweredAdvancedAudioPlayerEvent_LoadError:
-            Logger::instance()->e("AudioPlayer::playerEventCallback", "load error: %s", (char *) value);
+            Logger::instance()->e(__FUNCTION__, "load error: %s", (char *) value);
             break;
         case SuperpoweredAdvancedAudioPlayerEvent_EOF:
+            Logger::instance()->v(__FUNCTION__, "end of file");
             if (audioFileEndCallback != nullptr) {
+                Logger::instance()->v(__FUNCTION__, "end of file, call callback");
                 audioFileEndCallback();
             }
             break;
@@ -118,4 +120,8 @@ void AudioPlayer::play() {
 
 void AudioPlayer::pause() {
     player->pause();
+}
+
+void AudioPlayer::seekTo(double positionPercent) {
+    player->seek(positionPercent);
 }

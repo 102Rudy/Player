@@ -66,4 +66,8 @@ class WidgetViewModel(
             }
         }
     }
+
+    fun seekTo(positionPercent: Double) {
+        audioInteractor.seekTo(positionPercent)
+    }
 }

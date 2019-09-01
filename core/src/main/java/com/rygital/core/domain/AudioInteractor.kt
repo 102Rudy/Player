@@ -18,4 +18,6 @@ interface AudioInteractor {
     suspend fun play()
     suspend fun pause()
     fun stop()
+
+    fun seekTo(positionPercent: Double)
 }

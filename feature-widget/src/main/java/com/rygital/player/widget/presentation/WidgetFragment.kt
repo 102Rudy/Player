@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.rygital.core.utils.SimpleSeekBarChangeListener
 import com.rygital.core.utils.componentProvider
 import com.rygital.player.widget.R
 import com.rygital.player.widget.databinding.FragmentWidgetBinding
@@ -53,6 +55,13 @@ class WidgetFragment : Fragment(), View.OnClickListener {
 
         binding?.run {
             ivPlayPause.setOnClickListener(this@WidgetFragment)
+            seekBar.setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    seekBar ?: return
+
+                    viewModel?.seekTo(seekBar.progress / 100.0)
+                }
+            })
         }
     }
 
