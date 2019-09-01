@@ -115,11 +115,14 @@ void AudioPlayer::openAudioFile(const char *path, int fileOffset, int fileLength
 
 void AudioPlayer::play() {
     player->play(false);
-    SuperpoweredCPU::setSustainedPerformanceMode(player->playing);  // prevent dropouts
+
+//    causes high energy and CPU impact
+//    SuperpoweredCPU::setSustainedPerformanceMode(true);  // prevent dropouts
 }
 
 void AudioPlayer::pause() {
     player->pause();
+//    SuperpoweredCPU::setSustainedPerformanceMode(false);
 }
 
 void AudioPlayer::seekTo(double positionPercent) {
