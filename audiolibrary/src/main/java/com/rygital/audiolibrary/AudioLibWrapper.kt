@@ -11,6 +11,7 @@ class AudioLibWrapper {
     }
 
     external fun initialize(sampleRate: Int, bufferSize: Int)
+    external fun setAudioFileEndCallback(listener: AudioFileEndListener)
     external fun onBackground()
     external fun onForeground()
 

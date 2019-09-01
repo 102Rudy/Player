@@ -4,6 +4,7 @@
 
 #include <SuperpoweredAdvancedAudioPlayer.h>
 #include <AndroidIO/SuperpoweredAndroidAudioIO.h>
+#include <functional>
 
 #define SUPERPOWERED_TEMPORARY_LICENSE_KEY "ExampleLicenseKey-WillExpire-OnNextUpdate"
 
@@ -14,9 +15,13 @@ public:
 
     ~AudioPlayer();
 
+    void setAudioFileEndCallback(std::function<void()> audioFileEndCallback);
+
     void onBackground();
 
     void onForeground();
+
+    void playerEventCallback(SuperpoweredAdvancedAudioPlayerEvent event, void *value);
 
     bool processAudio(short int *output, unsigned int numberOfSamples);
 
@@ -31,6 +36,8 @@ private:
     SuperpoweredAndroidAudioIO *audioIO;
 
     float *stereoBuffer;
+
+    std::function<void()> audioFileEndCallback;
 };
 
 

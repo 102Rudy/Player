@@ -3,14 +3,24 @@
 #include <SLES/OpenSLES_AndroidConfiguration.h>
 #include <SLES/OpenSLES.h>
 #include <SuperpoweredCPU.h>
-#include <android/log.h>
 #include <Superpowered.h>
+#include <utility>
+#include <functional>
 #include "AudioPlayer.h"
 #include "Logger.h"
 
+// Called by the player
+static void playerEvent(
+        void *clientData,                               // custom pointer to client data
+        SuperpoweredAdvancedAudioPlayerEvent event,     // What happened
+        void *value                                     // A pointer to a stemsInfo structure or NULL for LoadSuccess
+) {
+    ((AudioPlayer *) clientData)->playerEventCallback(event, value);
+}
+
 // This is called periodically by the audio engine.
 static bool audioProcessing(
-        void *clientData,               // custom pointer
+        void *clientData,               // custom pointer to client data
         short int *audioIO,             // 16-bit stereo interleaved audio input and/or output
         int numberOfSamples,            // number of samples to process
         int __unused sampleRate         // current sample rate in Hz
@@ -33,8 +43,8 @@ AudioPlayer::AudioPlayer(unsigned int sampleRate, unsigned int bufferSize) {
     stereoBuffer = (float *) malloc(sizeof(float) * 2 * bufferSize);
 
     player = new SuperpoweredAdvancedAudioPlayer(
-            nullptr,                    // client data
-            nullptr,                    // callback function
+            this,                       // client data
+            playerEvent,                // callback function
             sampleRate,                 // sampling rate
             0                           // cached point count
     );
@@ -58,12 +68,33 @@ AudioPlayer::~AudioPlayer() {
     free(stereoBuffer);
 }
 
+void AudioPlayer::setAudioFileEndCallback(std::function<void()> audioFileEndCallback) {
+    this->audioFileEndCallback = std::move(audioFileEndCallback);
+}
+
 void AudioPlayer::onBackground() {
     audioIO->onBackground();
 }
 
 void AudioPlayer::onForeground() {
     audioIO->onForeground();
+}
+
+void AudioPlayer::playerEventCallback(SuperpoweredAdvancedAudioPlayerEvent event, void *value) {
+    switch (event) {
+        case SuperpoweredAdvancedAudioPlayerEvent_LoadSuccess:
+            break;
+        case SuperpoweredAdvancedAudioPlayerEvent_LoadError:
+            Logger::instance()->e("AudioPlayer::playerEventCallback", "load error: %s", (char *) value);
+            break;
+        case SuperpoweredAdvancedAudioPlayerEvent_EOF:
+            if (audioFileEndCallback != nullptr) {
+                audioFileEndCallback();
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 bool AudioPlayer::processAudio(short int *output, unsigned int numberOfSamples) {

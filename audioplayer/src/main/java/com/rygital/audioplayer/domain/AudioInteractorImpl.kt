@@ -1,5 +1,6 @@
 package com.rygital.audioplayer.domain
 
+import com.rygital.audiolibrary.AudioFileEndListener
 import com.rygital.audiolibrary.AudioLibWrapper
 import com.rygital.audioplayer.di.AudioPlayerScope
 import com.rygital.audioplayer.system.DeviceManager
@@ -36,6 +37,12 @@ internal class AudioInteractorImpl @Inject constructor(
 
         val (sampleRate, bufferSize) = deviceManager.getDeviceAudioInfo()
         audioLibWrapper.initialize(sampleRate, bufferSize)
+
+        audioLibWrapper.setAudioFileEndCallback(object : AudioFileEndListener {
+            override fun onAudioFileEnd() {
+                Timber.i("audio file end callback")
+            }
+        })
     }
 
     override fun onBackground() {
