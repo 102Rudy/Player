@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def superpowered_sdk_path = properties.getProperty('superpowered.dir')
+def superpowered_license_key = properties.getProperty('superpowered.licenseKey')
+
 
 android {
     compileSdkVersion versions.compileSdk
@@ -21,8 +23,11 @@ android {
 
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_PLATFORM=android-21", "-DPATH_TO_SUPERPOWERED:STRING=${superpowered_sdk_path}",
+                arguments "-DANDROID_PLATFORM=android-21",
+                        "-DPATH_TO_SUPERPOWERED:STRING=${superpowered_sdk_path}",
+                        "-DSUPERPOWERED_LICENSE_KEY:STRING=${superpowered_license_key}",
                         "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_static"
+
                 cFlags "-O3", "-fsigned-char"  // full optimization, char data type is signed
                 cppFlags "-std=c++14", "-fsigned-char", "-I${superpowered_sdk_path}"
             }

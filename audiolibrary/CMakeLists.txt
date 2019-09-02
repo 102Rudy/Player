@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 
+add_definitions(-DSUPERPOWERED_LICENSE_KEY=${SUPERPOWERED_LICENSE_KEY})
+
 add_library(
         audio-lib
         SHARED

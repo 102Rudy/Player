@@ -30,7 +30,7 @@ static bool audioProcessing(
 
 AudioPlayer::AudioPlayer(unsigned int sampleRate, unsigned int bufferSize) {
     SuperpoweredInitialize(
-            SUPERPOWERED_TEMPORARY_LICENSE_KEY,
+            SUPERPOWERED_LICENSE_KEY,
             false,                      // enableAudioAnalysis
             false,                      // enableFFTAndFrequencyDomain
             false,                      // enableAudioTimeStretching
