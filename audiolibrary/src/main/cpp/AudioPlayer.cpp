@@ -15,7 +15,7 @@ static void playerEvent(
         SuperpoweredAdvancedAudioPlayerEvent event,     // What happened
         void *value                                     // A pointer to a stemsInfo structure or NULL for LoadSuccess
 ) {
-    ((AudioPlayer *) clientData)->playerEventCallback(event, value);
+    static_cast<AudioPlayer *>(clientData)->playerEventCallback(event, value);
 }
 
 // This is called periodically by the audio engine.
@@ -25,7 +25,7 @@ static bool audioProcessing(
         int numberOfSamples,            // number of samples to process
         int __unused sampleRate         // current sample rate in Hz
 ) {
-    return ((AudioPlayer *) clientData)->processAudio(audioIO, (unsigned int) numberOfSamples);
+    return static_cast<AudioPlayer *>(clientData)->processAudio(audioIO, (unsigned int) numberOfSamples);
 }
 
 AudioPlayer::AudioPlayer(unsigned int sampleRate, unsigned int bufferSize) {
