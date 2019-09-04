@@ -128,3 +128,7 @@ void AudioPlayer::pause() {
 void AudioPlayer::seekTo(double positionPercent) {
     player->seek(positionPercent);
 }
+
+double AudioPlayer::getPositionPercent() {
+    return (double) player->positionPercent;
+}

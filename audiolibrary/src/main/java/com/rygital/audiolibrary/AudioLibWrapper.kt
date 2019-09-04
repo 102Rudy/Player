@@ -20,4 +20,5 @@ class AudioLibWrapper {
     external fun pause()
 
     external fun seekTo(positionPercent: Double)
+    external fun getPositionPercent(): Double
 }

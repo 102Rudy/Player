@@ -18,6 +18,11 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class WidgetFragment : Fragment(), View.OnClickListener {
+
+    companion object {
+        const val LENGTH = 1000
+    }
+
     @Inject
     lateinit var viewModelFactory: WidgetViewModelFactory
 
@@ -45,6 +50,28 @@ class WidgetFragment : Fragment(), View.OnClickListener {
     }
 
     private fun registerDataListeners() {
+        binding?.run {
+            ivPlayPause.setOnClickListener(this@WidgetFragment)
+            seekBar.max = LENGTH
+            seekBar.setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener {
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    viewModel?.setEnabledUpdatePosition(false)
+                }
+
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    seekBar ?: return
+
+                    if (fromUser) {
+                        viewModel?.seekTo(seekBar.progress / LENGTH.toDouble())
+                    }
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    viewModel?.setEnabledUpdatePosition(true)
+                }
+            })
+        }
+
         viewModel?.audioFile?.observe(this, Observer {
             binding?.audioFile = it
         })
@@ -53,16 +80,9 @@ class WidgetFragment : Fragment(), View.OnClickListener {
             binding?.playerState = it
         })
 
-        binding?.run {
-            ivPlayPause.setOnClickListener(this@WidgetFragment)
-            seekBar.setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener {
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    seekBar ?: return
-
-                    viewModel?.seekTo(seekBar.progress / 100.0)
-                }
-            })
-        }
+        viewModel?.position?.observe(this, Observer {
+            binding?.seekBar?.progress = (it * LENGTH).toInt()
+        })
     }
 
     /// region View.OnClickListener

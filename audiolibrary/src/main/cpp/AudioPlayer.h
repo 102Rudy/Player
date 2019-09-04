@@ -32,6 +32,8 @@ public:
 
     void seekTo(double positionPercent);
 
+    double getPositionPercent();
+
 private:
     SuperpoweredAdvancedAudioPlayer *player;
     SuperpoweredAndroidAudioIO *audioIO;

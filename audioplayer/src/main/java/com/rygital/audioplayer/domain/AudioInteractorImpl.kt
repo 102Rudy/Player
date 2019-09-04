@@ -77,4 +77,7 @@ internal class AudioInteractorImpl @Inject constructor(
     override fun seekTo(positionPercent: Double) {
         audioLibWrapper.seekTo(positionPercent)
     }
+
+    override fun getPositionPercent(): Double =
+            audioLibWrapper.getPositionPercent()
 }

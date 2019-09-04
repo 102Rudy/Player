@@ -140,5 +140,13 @@ Java_com_rygital_audiolibrary_AudioLibWrapper_seekTo(
     audioPlayer->seekTo(positionPercent);
 }
 
+JNIEXPORT jdouble
+Java_com_rygital_audiolibrary_AudioLibWrapper_getPositionPercent(
+        JNIEnv __unused *env,
+        jobject __unused pThis
+) {
+    return audioPlayer->getPositionPercent();
+}
+
 
 }

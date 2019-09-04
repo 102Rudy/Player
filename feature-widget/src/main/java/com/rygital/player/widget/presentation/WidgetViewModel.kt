@@ -9,7 +9,9 @@ import com.rygital.core.model.AudioFile
 import com.rygital.core.model.PlayerState
 import com.rygital.core.presentation.BaseViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -31,6 +33,10 @@ class WidgetViewModel(
         private val audioInteractor: AudioInteractor
 ) : BaseViewModel() {
 
+    companion object {
+        private const val UPDATE_POSITION_INTERVAL: Long = 1000L
+    }
+
     private val _audioFile = MutableLiveData<AudioFile>()
     val audioFile: LiveData<AudioFile>
         get() = _audioFile
@@ -38,6 +44,12 @@ class WidgetViewModel(
     private val _playerState = MutableLiveData<PlayerState>()
     val playerState: LiveData<PlayerState>
         get() = _playerState
+
+    private val _position = MutableLiveData<Float>()
+    val position: LiveData<Float>
+        get() = _position
+
+    private var updatePositionJob: Job? = null
 
     init {
         launch(Dispatchers.IO) {
@@ -55,19 +67,54 @@ class WidgetViewModel(
                 _playerState.postValue(it)
             }
         }
+
+        startUpdatingPosition()
     }
 
     fun togglePlayPause() {
-        launch {
-            if (playerState.value == PlayerState.PAUSED) {
-                audioInteractor.play()
-            } else {
-                audioInteractor.pause()
-            }
+        if (playerState.value == PlayerState.PAUSED) {
+            play()
+        } else {
+            pause()
         }
     }
 
     fun seekTo(positionPercent: Double) {
         audioInteractor.seekTo(positionPercent)
+    }
+
+    fun setEnabledUpdatePosition(enabled: Boolean) {
+        updatePositionJob?.cancel()
+        updatePositionJob = null
+
+        if (enabled) {
+            play()
+            startUpdatingPosition()
+        } else {
+            pause()
+        }
+    }
+
+    private fun play() {
+        launch {
+            audioInteractor.play()
+        }
+    }
+
+    private fun pause() {
+        launch {
+            audioInteractor.pause()
+        }
+    }
+
+    private fun startUpdatingPosition() {
+        updatePositionJob = launch(Dispatchers.IO) {
+            while (true) {
+                delay(UPDATE_POSITION_INTERVAL)
+
+                val pos = audioInteractor.getPositionPercent().toFloat()
+                _position.postValue(pos)
+            }
+        }
     }
 }

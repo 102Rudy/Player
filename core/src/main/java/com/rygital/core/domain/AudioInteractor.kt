@@ -20,4 +20,5 @@ interface AudioInteractor {
     fun stop()
 
     fun seekTo(positionPercent: Double)
+    fun getPositionPercent(): Double
 }
