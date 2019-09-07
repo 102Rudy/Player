@@ -4,11 +4,12 @@
     <style name="Widget" />
 
     <style name="Widget.Text">
-        <item name="android:color">@color/color_statelist_text</item>
+        <item name="android:textColor">@color/color_statelist_text</item>
     </style>
 
     <style name="Widget.Text.Regular">
         <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/color_text_60</item>
     </style>
 
     <style name="Widget.Text.Medium">

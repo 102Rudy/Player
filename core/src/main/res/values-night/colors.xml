@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- text colors -->
+    <color name="color_text_20">@color/common_white_20</color>
+    <color name="color_text_60">@color/common_white_60</color>
+    <color name="color_text_87">@color/common_white_87</color>
+    <color name="color_text_100">@color/common_white_100</color>
+
+
+    <!-- other colors -->
+    <color name="colorPrimary">@color/common_gray_900</color>
+    <color name="colorPrimaryDark">@color/common_gray_900</color>
+    <color name="colorAccent">@color/common_orange_500</color>
+    <color name="background">@color/common_gray_950</color>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="widget_height">80dp</dimen>
+
+    <style name="Player.Widget.Text.TrackTitle" parent="Widget.Text.Regular">
+        <item name="android:maxLines">2</item>
+    </style>
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common white -->
+    <color name="common_white_20">#33ffffff</color>
+    <color name="common_white_60">#99ffffff</color>
+    <color name="common_white_87">#ceffffff</color>
+    <color name="common_white_100">#ffffff</color>
+
+    <!-- common black -->
+    <color name="common_black_20">#33000000</color>
+    <color name="common_black_60">#99000000</color>
+    <color name="common_black_87">#de000000</color>
+    <color name="common_black_100">#000000</color>
+
+    <!-- common green -->
+    <color name="common_green_700">#388E3C</color>
+
+    <!-- common orange -->
+    <color name="common_orange_500">#ff9800</color>
+
+    <!-- common brown -->
+    <color name="common_brown_700">#5D4037</color>
+    <color name="common_brown_900">#3E2723</color>
+
+    <!-- common gray -->
+    <color name="common_gray_50">#fafafa</color>
+    <color name="common_gray_900">#212121</color>
+    <color name="common_gray_950">#111111</color>
+
+</resources>

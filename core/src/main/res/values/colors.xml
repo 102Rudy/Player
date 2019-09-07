@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="common_white_20">#33ffffff</color>
-    <color name="common_white_60">#99ffffff</color>
-    <color name="common_white_87">#deffffff</color>
-    <color name="common_white_100">#ffffff</color>
+    <!-- text colors -->
+    <color name="color_text_20">@color/common_black_20</color>
+    <color name="color_text_60">@color/common_black_60</color>
+    <color name="color_text_87">@color/common_black_87</color>
+    <color name="color_text_100">@color/common_black_100</color>
 
-    <color name="common_black_20">#33000000</color>
-    <color name="common_black_60">#99000000</color>
-    <color name="common_black_87">#de000000</color>
-    <color name="common_black_100">#000000</color>
+
+    <!-- other colors -->
+    <color name="colorPrimary">@color/common_brown_700</color>
+    <color name="colorPrimaryDark">@color/common_brown_900</color>
+    <color name="colorAccent">@color/common_green_700</color>
+    <color name="background">@color/common_white_100</color>
 </resources>

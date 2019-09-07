@@ -84,7 +84,6 @@ internal class ExplorerViewModel(
     }
 
     private fun loadAudioFilesFromStorage() {
-        // background
         launch {
             _audioFiles.value = withContext(Dispatchers.IO) { explorerInteractor.getSongs() }
         }
