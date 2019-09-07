@@ -19,7 +19,7 @@ class PreferencesWrapperImpl @Inject constructor(
     }
 
     override fun getThemeMode(): ThemeMode =
-            ThemeMode.values()[preferences.getInt(KEY_THEME_MODE, ThemeMode.DARK.ordinal)]
+            ThemeMode.values()[preferences.getInt(KEY_THEME_MODE, ThemeMode.LIGHT.ordinal)]
 
     override fun setThemeMode(themeMode: ThemeMode) {
         preferences.edit().putInt(KEY_THEME_MODE, themeMode.ordinal).apply()
