@@ -39,8 +39,8 @@ class ExplorerFragment : Fragment() {
 
         Timber.i("ExplorerFragment onCreateView $this")
         DaggerExplorerComponent.builder()
-                .coreAndroidApi(componentProvider.getApplicationComponent())
-                .audioPlayerApi(componentProvider.getAudioPlayerComponent())
+                .coreAndroidApi(componentProvider.coreAndroidApi)
+                .audioPlayerApi(componentProvider.audioPlayerApi)
                 .build()
                 .inject(this)
 

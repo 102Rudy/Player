@@ -1,0 +1,10 @@
+apply from: "${rootProject.projectDir}/common.gradle"
+
+dependencies {
+    implementation project(':core')
+
+    kapt libraries.daggerCompiler
+
+    implementation libraries.roomRuntime
+    kapt libraries.roomCompiler
+}

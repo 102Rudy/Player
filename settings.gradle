@@ -1,1 +1,7 @@
-include ':app', ':audiolibrary', ':audioplayer', ':core', ':feature-explorer', ':feature-widget'
+include ':app',
+        ':core',
+        ':database',
+        ':audiolibrary',
+        ':audioplayer',
+        ':feature-explorer',
+        ':feature-widget'

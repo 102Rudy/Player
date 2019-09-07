@@ -34,8 +34,8 @@ class WidgetFragment : Fragment(), View.OnClickListener {
 
         Timber.i("ExplorerFragment onCreateView $this")
         DaggerWidgetComponent.builder()
-                .coreAndroidApi(componentProvider.getApplicationComponent())
-                .audioPlayerApi(componentProvider.getAudioPlayerComponent())
+                .coreAndroidApi(componentProvider.coreAndroidApi)
+                .audioPlayerApi(componentProvider.audioPlayerApi)
                 .build()
                 .inject(this)
 
@@ -59,9 +59,7 @@ class WidgetFragment : Fragment(), View.OnClickListener {
                 }
 
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    seekBar ?: return
-
-                    if (fromUser) {
+                    if (seekBar != null && fromUser) {
                         viewModel?.seekTo(seekBar.progress / LENGTH.toDouble())
                     }
                 }

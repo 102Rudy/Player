@@ -52,11 +52,11 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        componentProvider.getAudioPlayerComponent().audioInteractor().onForeground()
+        componentProvider.audioPlayerApi.audioInteractor().onForeground()
     }
 
     override fun onPause() {
         super.onPause()
-        componentProvider.getAudioPlayerComponent().audioInteractor().onBackground()
+        componentProvider.audioPlayerApi.audioInteractor().onBackground()
     }
 }

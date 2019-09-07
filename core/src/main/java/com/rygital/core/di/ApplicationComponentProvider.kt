@@ -1,6 +1,7 @@
 package com.rygital.core.di
 
 interface ApplicationComponentProvider {
-    fun getApplicationComponent(): CoreAndroidApi
-    fun getAudioPlayerComponent(): AudioPlayerApi
+    val coreAndroidApi: CoreAndroidApi
+    val databaseApi: DatabaseApi
+    val audioPlayerApi: AudioPlayerApi
 }
