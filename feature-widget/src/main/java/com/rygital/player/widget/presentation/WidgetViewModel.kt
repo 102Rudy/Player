@@ -49,6 +49,8 @@ class WidgetViewModel(
     val position: LiveData<Float>
         get() = _position
 
+    private var playAfterSeek: Boolean = true
+
     private var updatePositionJob: Job? = null
 
     init {
@@ -88,9 +90,12 @@ class WidgetViewModel(
         updatePositionJob = null
 
         if (enabled) {
-            play()
+            if (playAfterSeek) {
+                play()
+            }
             startUpdatingPosition()
         } else {
+            playAfterSeek = playerState.value == PlayerState.PLAYING
             pause()
         }
     }
