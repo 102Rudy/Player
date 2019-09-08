@@ -12,10 +12,10 @@ internal class AudioFileRepositoryImpl @Inject constructor(
         private val audioFileDao: AudioFileDao
 ) : AudioFileRepository {
 
-    override fun setAudioFiles(items: List<AudioFile>) {
-        audioFileDao.insertAll(items.convertToEntities())
+    override suspend fun setAudioFiles(items: List<AudioFile>) {
+        audioFileDao.deleteAllAndInsert(items.convertToEntities())
     }
 
-    override fun getAudioFiles(): List<AudioFile> =
+    override suspend fun getAudioFiles(): List<AudioFile> =
             audioFileDao.getAll().convertToModels()
 }

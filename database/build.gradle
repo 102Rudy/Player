@@ -7,4 +7,5 @@ dependencies {
 
     implementation libraries.roomRuntime
     kapt libraries.roomCompiler
+    implementation libraries.roomKtx
 }

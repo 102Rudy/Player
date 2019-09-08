@@ -2,6 +2,7 @@ package com.rygital.player.explorer.di
 
 import com.rygital.core.di.AudioPlayerApi
 import com.rygital.core.di.CoreAndroidApi
+import com.rygital.core.di.DatabaseApi
 import com.rygital.player.explorer.data.ExplorerRepositoryImpl
 import com.rygital.player.explorer.data.FileManager
 import com.rygital.player.explorer.data.FileManagerImpl
@@ -25,6 +26,7 @@ internal annotation class ExplorerScope
         ],
         dependencies = [
             CoreAndroidApi::class,
+            DatabaseApi::class,
             AudioPlayerApi::class
         ]
 )

@@ -40,6 +40,7 @@ class ExplorerFragment : Fragment() {
         Timber.i("ExplorerFragment onCreateView $this")
         DaggerExplorerComponent.builder()
                 .coreAndroidApi(componentProvider.coreAndroidApi)
+                .databaseApi(componentProvider.databaseApi)
                 .audioPlayerApi(componentProvider.audioPlayerApi)
                 .build()
                 .inject(this)
@@ -51,31 +52,44 @@ class ExplorerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.run {
+            swipeRefresh?.run {
+                setOnRefreshListener { viewModel?.refreshAudioFiles() }
+            }
+
+            rvExplorer?.run {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                adapter = this@ExplorerFragment.adapter
+            }
+        }
+
         registerDataListeners()
 
         viewModel?.getAudioFiles()
-
-        binding?.rvExplorer?.run {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = this@ExplorerFragment.adapter
-        }
     }
 
     private fun registerDataListeners() {
-        viewModel?.showRequestPermissionDialog?.observe(this, Observer {
-            it.getContentIfNotHandled()?.let { (permission, requestCode) ->
-                tryToRequestPermission(permission, requestCode)
-            }
-        })
+        viewModel?.run {
+            showRequestPermissionDialog.observe(this@ExplorerFragment, Observer {
+                it.getContentIfNotHandled()?.let { (permission, requestCode) ->
+                    tryToRequestPermission(permission, requestCode)
+                }
+            })
 
-        viewModel?.showPermissionExplanationDialog?.observe(this, Observer {
-            it.getContentIfNotHandled()?.let { data -> showPermissionExplanationDialog(data) }
-        })
+            showPermissionExplanationDialog.observe(this@ExplorerFragment, Observer {
+                it.getContentIfNotHandled()?.let { data -> showPermissionExplanationDialog(data) }
+            })
 
-        viewModel?.audioFiles?.observe(this, Observer {
-            adapter.setItems(it)
-        })
+            audioFiles.observe(this@ExplorerFragment, Observer {
+                adapter.setItems(it)
+            })
+
+            showProgress.observe(this@ExplorerFragment, Observer {
+                binding?.swipeRefresh?.isRefreshing = it
+            })
+        }
     }
 
     /// region Permission methods

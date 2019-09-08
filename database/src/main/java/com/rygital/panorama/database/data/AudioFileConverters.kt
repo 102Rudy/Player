@@ -25,4 +25,4 @@ internal fun List<AudioFileEntity>.convertToModels(): List<AudioFile> {
     return entities
 }
 
-internal fun AudioFileEntity.convertToModel(): AudioFile = AudioFile(path, title)
+internal fun AudioFileEntity.convertToModel(): AudioFile = AudioFile(title, path)

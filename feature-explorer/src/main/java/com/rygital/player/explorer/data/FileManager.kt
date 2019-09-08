@@ -32,7 +32,7 @@ internal class FileManagerImpl @Inject constructor(
 
 
             if (path != null && title != null) {
-                songs.add(AudioFile(path, title))
+                songs.add(AudioFile(title = title, pathToFile = path))
             }
         }
         cursor.close()

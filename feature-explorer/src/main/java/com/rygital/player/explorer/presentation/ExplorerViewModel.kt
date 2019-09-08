@@ -52,6 +52,10 @@ internal class ExplorerViewModel(
     val audioFiles: LiveData<List<AudioFile>>
         get() = _audioFiles
 
+    private val _showProgress = MutableLiveData<Boolean>()
+    val showProgress: LiveData<Boolean>
+        get() = _showProgress
+
     constructor(
             explorerInteractor: ExplorerInteractor,
             audioInteractor: AudioInteractor,
@@ -73,19 +77,26 @@ internal class ExplorerViewModel(
     )
 
     init {
-        Timber.i("view model $this")
-        permissionDelegate.setPermissionGrantedCallback(PERMISSIONS_REQUEST_READ_STORAGE) {
-            loadAudioFilesFromStorage()
-        }
+        permissionDelegate.setPermissionGrantedCallback(PERMISSIONS_REQUEST_READ_STORAGE, ::loadAudioFilesFromStorage)
     }
 
     fun getAudioFiles() {
+        launch {
+            _showProgress.value = true
+            _audioFiles.value = withContext(Dispatchers.IO) { explorerInteractor.getSongs() }
+            _showProgress.value = false
+        }
+    }
+
+    fun refreshAudioFiles() {
         permissionDelegate.showRequestPermissionDialog(PERMISSIONS_REQUEST_READ_STORAGE)
     }
 
     private fun loadAudioFilesFromStorage() {
         launch {
-            _audioFiles.value = withContext(Dispatchers.IO) { explorerInteractor.getSongs() }
+            _showProgress.value = true
+            _audioFiles.value = withContext(Dispatchers.IO) { explorerInteractor.refreshSongs() }
+            _showProgress.value = false
         }
     }
 

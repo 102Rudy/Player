@@ -1,6 +1,6 @@
 package com.rygital.core.model
 
 data class AudioFile(
-        val pathToFile: String,
-        val title: String
+        val title: String,
+        val pathToFile: String
 )

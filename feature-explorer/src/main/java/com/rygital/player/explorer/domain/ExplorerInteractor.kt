@@ -4,24 +4,22 @@ import com.rygital.core.model.AudioFile
 import javax.inject.Inject
 
 internal interface ExplorerRepository {
-    fun loadFilesFromStorage(): List<AudioFile>
-    fun loadFilesFromDatabase()
+    suspend fun loadFilesFromStorage(): List<AudioFile>
+    suspend fun loadFilesFromDatabase(): List<AudioFile>
 }
 
 interface ExplorerInteractor {
-    fun getSongs(): List<AudioFile>
-    fun refreshSongs(): List<AudioFile>
+    suspend fun getSongs(): List<AudioFile>
+    suspend fun refreshSongs(): List<AudioFile>
 }
 
 internal class ExplorerInteractorImpl @Inject constructor(
         private val repository: ExplorerRepository
 ) : ExplorerInteractor {
 
-    override fun getSongs(): List<AudioFile> {
-        return repository.loadFilesFromStorage()
-    }
+    override suspend fun getSongs(): List<AudioFile> =
+            repository.loadFilesFromDatabase()
 
-    override fun refreshSongs(): List<AudioFile> {
-        return listOf()
-    }
+    override suspend fun refreshSongs(): List<AudioFile> =
+            repository.loadFilesFromStorage()
 }
