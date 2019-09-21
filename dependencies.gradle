@@ -58,6 +58,7 @@ ext {
             androidxCardView            : "androidx.cardview:cardview:$versions.androidx",
             androidxRecyclerView        : "androidx.recyclerview:recyclerview:$versions.androidx",
             androidxConstraintLayout    : "androidx.constraintlayout:constraintlayout:$versions.androidxConstraint",
+            androidxMedia               : "androidx.media:media:$versions.androidx",
 
             databindingCompiler         : "com.android.databinding:compiler:$versions.databindingCompiler",
 
