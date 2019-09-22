@@ -4,5 +4,7 @@ dependencies {
     implementation project(':core')
     implementation project(':audiolibrary')
 
+    implementation libraries.androidxMedia
+
     kapt libraries.daggerCompiler
 }
