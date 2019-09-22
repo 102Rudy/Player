@@ -13,10 +13,6 @@ import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
 
-internal interface AudioRepository {
-    fun getCurrentPlaylist(): List<Song>
-}
-
 @AudioPlayerScope
 internal class AudioInteractorImpl @Inject constructor(
         private val audioLibWrapper: AudioLibWrapper,
